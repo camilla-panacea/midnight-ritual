@@ -1,0 +1,86 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@700&family=Ubuntu:wght@500&display=swap');
+
+body {
+  background-color: #0c151c;
+}
+
+#locBox {
+  display: inline;
+  font-size: 60px;
+
+}
+
+#locOut {
+  text-align: center;
+  font-size: 60px;
+  color: #c79f1a;
+}
+
+#gridBox {
+  display: grid;
+  height: 700px;
+  border: 2px solid;
+  /* Green border */
+  grid-template-rows: auto 10%;
+  /* Green shadow for depth */
+  border-radius: 18px;
+  /* Rounded corners for retro feel */
+  padding: 10px;
+}
+
+/* styling for the main text output area on the page */
+#output {
+  font-size: 23px;
+  /* Slightly smaller font for better readability */
+  overflow-y: scroll;
+  /* Green border to separate output from input */
+  padding: 10px;
+  /* Padding for text inside output */
+  /* Green text for retro look */
+  line-height: 1.6;
+  /* Increased line height for readability */
+  font-family: 'Roboto', sans-serif;
+}
+
+/* styling for the input box where the player types their commands */
+#input {
+  font-size: 20px;
+  /* Adjusted font size for balance */
+  border: 2px solid;
+  padding: 10px;
+  /* Padding for text inside input */
+  font-family: 'Roboto', sans-serif;
+}
+
+/* General styling for smooth scrolling */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: #021b2b;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #c8dbe0;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+.MRDefault {
+  background-color: #021e31;
+  color: #57c8e4;
+  border-bottom: #946b04;
+  transition: all 0.5s ease;
+  box-shadow: 0px 0px 10px #07708a;
+}
+
+.MRDark {
+  background-color: #0c151c;
+  color: #c77b1e;
+  border-bottom: #634426;
+  transition: all 0.5s ease;
+  box-shadow: 0px 0px 10px #c77b1e;
+}
