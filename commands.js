@@ -628,6 +628,22 @@ function twoWordCommands(firstWord, secondWord) {
                 return true;
             }
 
+        case "KILL":
+            if (secondWord == "YOURSELF") {
+                outputText("You cannot be bothered with this shit anymore. You pull out your dagger and slit your throat.")
+                gameover()
+                return true;
+            }
+            if (secondWord == "BERTIE" && locationNum == 0) {
+                outputText("You plunge your dagger into Bertie's flesh again and again, until it finally stops moving. You fucking monster. Get out of my sight.")
+                gameover()
+                return true;
+            }
+
+        case "CHECK":
+            if (secondWord == "NOTES") {
+                outputText(objects[0].look)
+            }
 
         default:
             return false;
