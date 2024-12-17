@@ -3,6 +3,8 @@ function initialseGame() {
     input = document.getElementById('input')
     output = document.getElementById('output')
     box = document.getElementById("gridBox")
+
+
     //populate the locations with data
     locations[0] = {
         name: "Kitchen",
@@ -54,20 +56,22 @@ function initialseGame() {
 
     locations[9] = {
         name: "Ritual area",
-        description: "You step into the secret, windowless room tucked away behind the fireplace and hidden away from any nosy architectural plans. The walls and floor are constructed of the same dusty gray stone brick, and the room is dimly lit by the skittering light of fat, waxy candles crammed onto shelves and strewn across the cold floor. The ritual circles and symbols are already drawn in Circe's Extra Virgin Maiden's Blood™ and all you need to do is correctly perform the ritual according to your notes. Easy!",
-        exits: "",
+        description: "You step into the secret, windowless room tucked away behind the fireplace and hidden away from any nosy architectural plans. The walls and floor are constructed of the same dusty gray stone brick, and the room is dimly lit by the skittering light of fat, waxy candles crammed onto shelves and strewn across the cold floor. The ritual circles and symbols are already drawn in <i>Circe's Extra Virgin Maiden's Blood</i> (tm) and all you need to do is correctly perform the ritual according to your notes. Easy!",
+        exits: "N",
         atmos: "MSDark"
     }
 
+
+    //defines objects
     objects = [
-        { name: "Notes", description: "notes", location: -1, active: true, gettable: true, look: "Spread the heavens across the earth; Cut the essence out of our veins; Spread the blood in the shape of our lady; Bathe in fire and accept rebirth." },
+        { name: "Notes", description: "notes", location: -1, active: true, gettable: true, look: "Spread the stars across the ground; Cut the essence out of Our veins; Spread the blood in the shape of Our lady; Bathe in fire and accept rebirth." },
         { name: "Ritual dagger", look: "A sharp , gleaming, twisting piece of metal used to draw blood in rituals involving communication with the beyond.", location: -1, active: true, gettable: true },
-        { name: "Key", description: "A delicately embellished silver key rests on the hook.", location: 1, active: true, gettable: true, action: "unlock", look: "The key rests" },
+        { name: "Key", description: "A delicately embellished silver key rests on the hook.", location: 1, active: true, gettable: true, action: "unlock", look: "The key rests in your hand, a comfortably heavy weight to it." },
         { name: "door", description: "The door to the kitchen is locked. You think you remember leaving the key somewhere near the main entrance...", location: 4, active: true, gettable: true, locked: true },
         { name: "Bertie", description: "Bertie seems to be rather peckish. Perhaps it will relinquish its inner contents if bribed with a tasty morsel...", location: 0, active: true, gettable: false },
-        { name: "Phoenix feather", description: "kewl", location: 0, active: false, gettable: true },
-        { name: "Fireplace", description: "The fireplace smoulders jovially whilst denying you access to the ritual room within with a wall of flickering flame. You don't need to go there right now <i>anyways.</i>", location: "5", active: true, gettable: false },
-        { name: "Tasty Morsel", description: "fuuuck that looks good...", location: 8, active: true, gettable: true, look: "A truly scrumptious looking morsel. <i>you</i> aren't hungry, but maybe you know something that is..." },
+        { name: "Phoenix feather", description: "kewl", location: 0, active: false, gettable: true, look: "The feather crackles with arcane fire - it's warm to the touch." },
+        { name: "Fireplace", description: "The fireplace smoulders jovially whilst denying you access to the ritual room within with a wall of flickering flame. You don't need to go there right now <i>anyways.</i>", location: "5", active: true, gettable: false, shut: true },
+        { name: "Morsel", description: "A tasty-looking morsel is resting on a china plate on the far end of the table. The crystal glass next to it casts refracing light across it.", location: 8, active: true, gettable: true, look: "A truly scrumptious looking morsel. <i>You</i> aren't hungry, but maybe you know something that is..." },
         { name: "Shelves", description: "Shelves bristling with diagrams and maps of the stars. You notice four curiously shaped sigils...", location: 7, active: true, gettable: false },
 
         { name: "Sagittarius sigil", description: "A sigil in the shape of the constellation Sagittarius", location: 7, active: false, gettable: true, action: "place" },
@@ -75,16 +79,22 @@ function initialseGame() {
         { name: "Pisces sigil", description: "A sigil in the shape of the constellation Pisces", location: 7, active: false, gettable: true, action: "place" },
         { name: "Cancer sigil", description: "A sigil in the shape of the constellation Cancer", location: 7, active: false, gettable: true, action: "place" },
 
-        { name: "Stardust", description: "cocaine joke", location: 7, active: false, gettable: true },
+        { name: "Stardust", description: "cocaine joke", location: 7, active: false, gettable: true, look: "The Stardust glimmers with the light of a thousand nebulae, sparkling in the palm of your hand." },
         { name: "Plaque", description: "You see a plaque set near the divots on the wall.", location: 7, active: true, gettable: false },
         { name: "Lever", description: "There is a lever next to the plaque. It's so amazingly and richly detailed that I cannot do it justice writing. So I won't.", location: 7, active: true, gettable: false },
+        { name: "Circle", description: "The ritual circle beckons. Look over your notes and then enter 'start' to begin.", location: 9, active: true, gettable: false }
     ]
 
+    outputText("M I D N I G H T  ~~  R I T U A L", "100px", "#c79f1a", "coolFont", "center",)
+    outputText("You are a young witch prearing to engage in a most profane summoning rite. You are nearing its completion, but still need to gather two reagents before performing the ritual - Stardust and a Phoenix Feather. You think you left the phoenix feather in the kitchens somewhere, and the stardust is secured in the observatory. Then, you'll need to go behind the fireplace and complete the ritual. Good luck!")
+    outputText(".*+++++*+++++*.", "60px", "#c79f1a", "coolFont")
     locationNum = 5
     input.focus()
     showlocation()
     outputText("")
+    scrolling = true
 
+    //defines divots for observatory puzzle.
     divots = [
         { id: "topRight", selected: false, contents: "" },
         { id: "topLeft", selected: false, contents: "" },
@@ -93,6 +103,9 @@ function initialseGame() {
     ]
 
 
+
+
+    //sets up inventory
     for (let i = 0; i < objects.length; i++) {
         if (objects.location == -1) {
             inventory.unshift(objects[i].name)
