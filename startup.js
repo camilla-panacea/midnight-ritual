@@ -85,7 +85,7 @@ function initialseGame() {
         { name: "Circle", description: "The ritual circle beckons. Look over your notes and then enter 'start' to begin.", location: 9, active: true, gettable: false }
     ]
 
-    outputText("M I D N I G H T  ~~  R I T U A L", "100px", "#c79f1a", "coolFont", "center",)
+    outputText("M I D N I G H T  ~~  R I T U A L", "100px", "#ba8302", "coolFont", "center",)
     outputText("You are a young witch prearing to engage in a most profane summoning rite. You are nearing its completion, but still need to gather two reagents before performing the ritual - Stardust and a Phoenix Feather. You think you left the phoenix feather in the kitchens somewhere, and the stardust is secured in the observatory. Then, you'll need to go behind the fireplace and complete the ritual. Good luck!")
     outputText(".*+++++*+++++*.", "60px", "#c79f1a", "coolFont")
     locationNum = 5
